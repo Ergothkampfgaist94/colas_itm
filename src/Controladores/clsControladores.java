@@ -123,18 +123,60 @@ public class clsControladores {
     // METODO PARA ACTUALIZAR LA COLA DE CLIENTES POR EL DNI
     public String ActualizarCliente(String DNI) {
         try {
+            boolean banderita = false;
+            String datoen = "";
             Cadena = "";
+            int mod = 0;
             while (!colaCliente.EstaVacia()) {
                 clsClientes objCliente;
                 objCliente = colaCliente.getElementos();
 
                 if (objCliente.getDNI().equalsIgnoreCase(DNI)) {
-                    objCliente.setNombre("Nuevo nombre: \n");
-                    objCliente.setApellidos("Nuevo apellido: \n");
-                    objCliente.setCorreoE("Nuevo correo: \n");
-                    objCliente.setDireccion("Nueva Dirección: \n");
-                    objCliente.setFechaNac("Nuevo fecha de nacimiento: \n");
-                    objCliente.setTelefono("Nuevo telefono: \n");
+                    banderita = true;
+                    mod = Integer.parseInt(JOptionPane.showInputDialog("Dato a modificar"
+                            + "\n 1 nombre"
+                            + "\n 2 apellido"
+                            + "\n 3 correo"
+                            + "\n 4 dirección"
+                            + "\n 5 fecha"
+                            + "\n 6 teléfono"
+                            + ""));
+                    switch (mod) {
+                        case 1:
+                            objCliente.setNombre(JOptionPane.showInputDialog(
+                                    "¿Cuál es nuevo nombre del cliente?"));
+                            Cadena = "Nombre del cliente modificado con éxito";
+                            break;
+                        case 2:
+                            objCliente.setApellidos(JOptionPane.showInputDialog(
+                                    "¿Cuál es nuevo apellido del cliente?"));
+                            Cadena = "Apellido del cliente modificado con éxito";
+                            break;
+                        case 3:
+                            objCliente.setCorreoE(JOptionPane.showInputDialog(
+                                    "¿Cuál es nuevo correo del cliente?"));
+                            Cadena = "Correo del cliente modificado con éxito";
+                            break;
+                        case 4:
+                            objCliente.setDireccion(JOptionPane.showInputDialog(
+                                    "¿Cuál es la nueva dirección del cliente?"));
+                            Cadena = "Dirección del cliente modificado con éxito";
+                            break;
+                        case 5:
+                            objCliente.setFechaNac(JOptionPane.showInputDialog(
+                                    "¿Cuál es la nueva fecha de nacimiento?"));
+                            Cadena = "fecha de nacimiento del cliente modificado con éxito";
+                            break;
+                        case 6:
+                            objCliente.setTelefono(JOptionPane.showInputDialog(
+                                    "¿Cuál es el nuevo teléfono de nacimiento?"));
+                            Cadena = "Teléfono del cliente modificado con éxito";
+                            break;
+
+                        default:
+                            Cadena = "¡Error! la opción seleccionada no existe\n "
+                                    + "Intente el proceso de nuevo";
+                    }
 
                     colaClienteAux.Encolar(colaCliente.getElementos());
                     colaCliente.Desencolar();
@@ -145,6 +187,9 @@ public class clsControladores {
                 }
 
             }
+            returnColaClientes(colaClienteAux);
+
+            return Cadena;
         } catch (HeadlessException e) {
             Cadena = "Error al leer clientes en la COLA: " + e.getMessage();
 
@@ -152,9 +197,18 @@ public class clsControladores {
             return Cadena;
 
         }
-        returnColaClientes(colaClienteAux);
 
-        return Cadena;
+//        
+//            }
+//        }
+//        
+//        if(banderita)
+//            datoen = "El libro fue encontrado!!!\n\n";
+//        else
+//            cadena = "El ISBN del libro no fue encontrado.";
+//        
+//        retPilaLibro(AuxLibro);
+//        return datoen + cadena;
     }
     // METODO PARA ELIMINAR UN CLIENTE POR EL DNI
 

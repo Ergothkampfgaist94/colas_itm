@@ -11,10 +11,10 @@ public class COLAS_Base_251023 {
         while (opcion != 7) {
 
             opcion = Integer.parseInt(JOptionPane.showInputDialog("PROCESAMIENTO DE LIBROS\n"
-                    + "1. Agregar libros\n"
-                    + "2. Eliminar libro\n"
-                    + "3. Modificar libro\n"
-                    + "4. Buscar libro\n"
+                    + "1. Agregar cliente\n"
+                    + "2. Modificar cliente\n"
+                    + "3. Mostrar cliente\n"
+                    + "4. Eliminar cliente\n"
                     + "5. Mostrar inventario\n"
                     + "6. Cantidad de libros\n"
                     + "7. Salir del sistema\n"));
@@ -28,6 +28,13 @@ public class COLAS_Base_251023 {
                     JOptionPane.showMessageDialog(null, met.ActualizarCliente(
                             JOptionPane.showInputDialog("¿DN1?")
                     ));
+                    break;
+                case 3:
+                    JOptionPane.showMessageDialog(null, met.LeerCliente());
+                    break;
+                case 4:
+                    JOptionPane.showMessageDialog(null, met.EliminarCliente(
+                            JOptionPane.showInputDialog("¿DN1?")));
                     break;
 
                 default:
