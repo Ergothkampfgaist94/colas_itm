@@ -26,8 +26,7 @@ public class COLAS_Base_251023 {
                     break;
                 case 2:
                     JOptionPane.showMessageDialog(null, met.ActualizarCliente(
-                            JOptionPane.showInputDialog("¿DN1?")
-                    ));
+                            JOptionPane.showInputDialog("¿DN1?")));
                     break;
                 case 3:
                     JOptionPane.showMessageDialog(null, met.LeerCliente());
@@ -36,9 +35,8 @@ public class COLAS_Base_251023 {
                     JOptionPane.showMessageDialog(null, met.EliminarCliente(
                             JOptionPane.showInputDialog("¿DN1?")));
                     break;
-                case 5:
-                    JOptionPane.showMessageDialog(null, met.BuscarCliente(
-                            JOptionPane.showInputDialog("¿DN1?")));
+                case 5:                    
+                    JOptionPane.showMessageDialog(null, met.BuscarCliente());
                     break;
 
                 default:

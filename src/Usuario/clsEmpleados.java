@@ -4,13 +4,13 @@
  */
 package Usuario;
 
-public class clsEmpleados extends clsUsuarios{
-    
+public class clsEmpleados extends clsUsuarios {
+
     private int CantHTM;
     private float ValorHora;
     private int Rol;
-    
-    public clsEmpleados(){
+
+    public clsEmpleados() {
         this.CantHTM = 0;
         this.ValorHora = 0;
         this.Rol = 0;
@@ -22,7 +22,15 @@ public class clsEmpleados extends clsUsuarios{
         this.Rol = Rol;
     }
 
-    public clsEmpleados(int CantHTM, float ValorHora, int Rol, String DNI, String Nombre, String Apellidos, String CorreoE, String Direccion, String Telefono) {
+    public clsEmpleados(int CantHTM,
+            float ValorHora,
+            int Rol,
+            String DNI,
+            String Nombre,
+            String Apellidos,
+            String CorreoE,
+            String Direccion,
+            String Telefono) {
         super(DNI, Nombre, Apellidos, CorreoE, Direccion, Telefono);
         this.CantHTM = CantHTM;
         this.ValorHora = ValorHora;
@@ -55,7 +63,10 @@ public class clsEmpleados extends clsUsuarios{
 
     @Override
     public String toString() {
-        return "clsEmpleados{" + "CantHTM=" + CantHTM + ", ValorHora=" + ValorHora + ", Rol=" + Rol + '}';
+        return super.toString()
+                + "CantHTM=" + CantHTM
+                + ", ValorHora=" + ValorHora
+                + ", Rol=" + Rol + '}';
     }
-   
+
 }

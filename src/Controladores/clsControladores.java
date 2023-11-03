@@ -187,7 +187,7 @@ public class clsControladores {
 
             }
             if (banderita) {
-                Cadena = "encontrado\n";
+                Cadena += "encontrado\n";
             } else {
                 Cadena = "No encontrado \n";
             }
@@ -205,15 +205,12 @@ public class clsControladores {
     // METODO PARA ELIMINAR UN CLIENTE POR EL DNI
 
     public String EliminarCliente(String DNI) {
-
         try {
             Cadena = "";
             Banderita = false;
-
             while (!colaCliente.EstaVacia()) {
-
+                clsClientes objCliente;
                 objCliente = colaCliente.getElementos();
-
                 if (objCliente.getDNI().equalsIgnoreCase(DNI)) {
                     Banderita = true;
                     ContCliente--;
@@ -223,40 +220,35 @@ public class clsControladores {
                     colaCliente.Desencolar();
                 }
             }
-
             if (Banderita) {
-                Cadena = "El registro del libro fue encontrado y eliminado";
+                Cadena = "El Registro del Cliente fue encontrado y eliminado";
             } else {
-                Cadena = "El ISBN del libro no fue encontrado";
+                Cadena = "El Registro del Cliente no fue encontrado";
             }
-
             returnColaClientes(colaClienteAux);
             return Cadena;
-
         } catch (Exception e) {
             // CAPTURAMOS EL ERROR DEL PROCESO Y LO ASIGNAMOS A CADENA
             Cadena = "Error al eliminar cliente en la COLA: " + e.getMessage();
-
             // RETORNAMOS EL ERROR
             return Cadena;
         }
-
     }
 
     // METODO PARA BUSCAR UN CLIENTE POR EL DNI
-    public String BuscarCliente(String DNI) {
-        boolean banderita = false;
-        String datoen = "";
+    public String BuscarCliente() {
+        String DNI = JOptionPane.showInputDialog("¿DN1?");
         Cadena = "";
+        boolean banderita = false;
         while (!colaCliente.EstaVacia()) {
             clsClientes objCliente;
             objCliente = colaCliente.getElementos();
-
             if (objCliente.getDNI().equalsIgnoreCase(DNI)) {
                 banderita = true;
                 Cadena += "Registro de Cliente\n\n"
                         + "DNI: " + objCliente.getDNI()
-                        + "\nNombre completo: " + objCliente.getNombre() + " " + objCliente.getApellidos()
+                        + "\nNombre completo: " + objCliente.getNombre()
+                        + " " + objCliente.getApellidos()
                         + "\n ";
                 colaClienteAux.Encolar(colaCliente.getElementos());
                 colaCliente.Desencolar();
@@ -267,11 +259,10 @@ public class clsControladores {
             }
         }
         if (Banderita) {
-            Cadena = "El registro del libro fue encontrado y eliminado";
+            Cadena = "El registro del cliente fue encontrado y eliminado";
         } else {
-            Cadena = "El ISBN del libro no fue encontrado";
+            Cadena = "El egistro del cliente no fue encontrado";
         }
-
         returnColaClientes(colaClienteAux);
         return Cadena;
     }

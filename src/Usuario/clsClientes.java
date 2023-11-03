@@ -1,14 +1,14 @@
 /*
  * Create by Maira Perez - 27102023
  * mlp243@gmail.com
-*/
+ */
 package Usuario;
 
-public class clsClientes extends clsUsuarios{
-    
+public class clsClientes extends clsUsuarios {
+
     private String FechaNac;
-    
-    public clsClientes(){
+
+    public clsClientes() {
         this.FechaNac = "";
     }
 
@@ -16,8 +16,8 @@ public class clsClientes extends clsUsuarios{
         this.FechaNac = FechaNac;
     }
 
-    public clsClientes(String DNI, String Nombre, String Apellidos, 
-            String CorreoE, String Direccion, String Telefono, 
+    public clsClientes(String DNI, String Nombre, String Apellidos,
+            String CorreoE, String Direccion, String Telefono,
             String FechaNac) {
         super(DNI, Nombre, Apellidos, CorreoE, Direccion, Telefono);
         this.FechaNac = FechaNac;
@@ -33,7 +33,7 @@ public class clsClientes extends clsUsuarios{
 
     @Override
     public String toString() {
-        return "Cliente {" + "FechaNac=" + FechaNac + '}';
+        return super.toString() + "Fecha Nacimiento =" + FechaNac + '}';
     }
-        
+
 }
