@@ -15,7 +15,7 @@ public class COLAS_Base_251023 {
                     + "2. Modificar cliente\n"
                     + "3. Mostrar cliente\n"
                     + "4. Eliminar cliente\n"
-                    + "5. Mostrar inventario\n"
+                    + "5. Buscar cliente\n"
                     + "6. Cantidad de libros\n"
                     + "7. Salir del sistema\n"));
 
@@ -34,6 +34,10 @@ public class COLAS_Base_251023 {
                     break;
                 case 4:
                     JOptionPane.showMessageDialog(null, met.EliminarCliente(
+                            JOptionPane.showInputDialog("¿DN1?")));
+                    break;
+                case 5:
+                    JOptionPane.showMessageDialog(null, met.BuscarCliente(
                             JOptionPane.showInputDialog("¿DN1?")));
                     break;
 

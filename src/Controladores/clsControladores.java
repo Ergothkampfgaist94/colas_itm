@@ -124,7 +124,6 @@ public class clsControladores {
     public String ActualizarCliente(String DNI) {
         try {
             boolean banderita = false;
-            String datoen = "";
             Cadena = "";
             int mod = 0;
             while (!colaCliente.EstaVacia()) {
@@ -187,6 +186,11 @@ public class clsControladores {
                 }
 
             }
+            if (banderita) {
+                Cadena = "encontrado\n";
+            } else {
+                Cadena = "No encontrado \n";
+            }
             returnColaClientes(colaClienteAux);
 
             return Cadena;
@@ -197,18 +201,6 @@ public class clsControladores {
             return Cadena;
 
         }
-
-//        
-//            }
-//        }
-//        
-//        if(banderita)
-//            datoen = "El libro fue encontrado!!!\n\n";
-//        else
-//            cadena = "El ISBN del libro no fue encontrado.";
-//        
-//        retPilaLibro(AuxLibro);
-//        return datoen + cadena;
     }
     // METODO PARA ELIMINAR UN CLIENTE POR EL DNI
 
@@ -253,9 +245,34 @@ public class clsControladores {
 
     // METODO PARA BUSCAR UN CLIENTE POR EL DNI
     public String BuscarCliente(String DNI) {
-
+        boolean banderita = false;
+        String datoen = "";
         Cadena = "";
+        while (!colaCliente.EstaVacia()) {
+            clsClientes objCliente;
+            objCliente = colaCliente.getElementos();
 
+            if (objCliente.getDNI().equalsIgnoreCase(DNI)) {
+                banderita = true;
+                Cadena += "Registro de Cliente\n\n"
+                        + "DNI: " + objCliente.getDNI()
+                        + "\nNombre completo: " + objCliente.getNombre() + " " + objCliente.getApellidos()
+                        + "\n ";
+                colaClienteAux.Encolar(colaCliente.getElementos());
+                colaCliente.Desencolar();
+
+            } else {
+                colaClienteAux.Encolar(colaCliente.getElementos());
+                colaCliente.Desencolar();
+            }
+        }
+        if (Banderita) {
+            Cadena = "El registro del libro fue encontrado y eliminado";
+        } else {
+            Cadena = "El ISBN del libro no fue encontrado";
+        }
+
+        returnColaClientes(colaClienteAux);
         return Cadena;
     }
 
