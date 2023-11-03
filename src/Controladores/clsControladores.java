@@ -127,7 +127,6 @@ public class clsControladores {
             Cadena = "";
             int mod = 0;
             while (!colaCliente.EstaVacia()) {
-                clsClientes objCliente;
                 objCliente = colaCliente.getElementos();
 
                 if (objCliente.getDNI().equalsIgnoreCase(DNI)) {
@@ -209,7 +208,6 @@ public class clsControladores {
             Cadena = "";
             Banderita = false;
             while (!colaCliente.EstaVacia()) {
-                clsClientes objCliente;
                 objCliente = colaCliente.getElementos();
                 if (objCliente.getDNI().equalsIgnoreCase(DNI)) {
                     Banderita = true;
@@ -236,43 +234,73 @@ public class clsControladores {
     }
 
     // METODO PARA BUSCAR UN CLIENTE POR EL DNI
-    public String BuscarCliente() {
-        String DNI = JOptionPane.showInputDialog("¿DN1?");
-        Cadena = "";
-        boolean banderita = false;
-        while (!colaCliente.EstaVacia()) {
-            clsClientes objCliente;
-            objCliente = colaCliente.getElementos();
-            if (objCliente.getDNI().equalsIgnoreCase(DNI)) {
-                banderita = true;
-                Cadena += "Registro de Cliente\n\n"
-                        + "DNI: " + objCliente.getDNI()
-                        + "\nNombre completo: " + objCliente.getNombre()
-                        + " " + objCliente.getApellidos()
-                        + "\n ";
-                colaClienteAux.Encolar(colaCliente.getElementos());
-                colaCliente.Desencolar();
-
-            } else {
-                colaClienteAux.Encolar(colaCliente.getElementos());
-                colaCliente.Desencolar();
+    public String BuscarCliente(String DNI) {
+        try {
+            Cadena = "";
+            String info = "";
+            Banderita = false;
+            while (!colaCliente.EstaVacia()) {
+                objCliente = colaCliente.getElementos();
+                if (objCliente.getDNI().equalsIgnoreCase(DNI)) {
+                    Banderita = true;
+                    info = objCliente.getDNI()
+                            + "\n " + objCliente.getNombre()
+                            + " " + objCliente.getApellidos();
+                    colaClienteAux.Encolar(colaCliente.getElementos());
+                    colaCliente.Desencolar();
+                } else {
+                    colaClienteAux.Encolar(colaCliente.getElementos());
+                    colaCliente.Desencolar();
+                }
             }
+            if (Banderita) {
+                Cadena = "El Registro del Cliente fue encontrado\n" + info;
+            } else {
+                Cadena = "El Registro del Cliente no fue encontrado";
+            }
+            returnColaClientes(colaClienteAux);
+            return Cadena;
+        } catch (Exception e) {
+            // CAPTURAMOS EL ERROR DEL PROCESO Y LO ASIGNAMOS A CADENA
+            Cadena = "Error al buscar cliente en la COLA: " + e.getMessage();
+            // RETORNAMOS EL ERROR
+            return Cadena;
         }
-        if (Banderita) {
-            Cadena = "El registro del cliente fue encontrado y eliminado";
-        } else {
-            Cadena = "El egistro del cliente no fue encontrado";
-        }
-        returnColaClientes(colaClienteAux);
-        return Cadena;
     }
 
     // METODO PARA BUSCAR UN CLIENTE POR EL NOMBRE
-    public String BuscarClienteNombre(String DNI) {
-
-        Cadena = "";
-
-        return Cadena;
+    public String BuscarClienteNombre(String Nombre) {
+        try {
+            Cadena = "";
+            String info = "";
+            Banderita = false;
+            while (!colaCliente.EstaVacia()) {
+                objCliente = colaCliente.getElementos();
+                if (objCliente.getNombre().equalsIgnoreCase(Nombre)) {
+                    Banderita = true;
+                    info = objCliente.getDNI()
+                            + "\n " + objCliente.getNombre()
+                            + " " + objCliente.getApellidos();
+                    colaClienteAux.Encolar(colaCliente.getElementos());
+                    colaCliente.Desencolar();
+                } else {
+                    colaClienteAux.Encolar(colaCliente.getElementos());
+                    colaCliente.Desencolar();
+                }
+            }
+            if (Banderita) {
+                Cadena = "El Registro del Cliente fue encontrado\n" + info;
+            } else {
+                Cadena = "El Registro del Cliente no fue encontrado";
+            }
+            returnColaClientes(colaClienteAux);
+            return Cadena;
+        } catch (Exception e) {
+            // CAPTURAMOS EL ERROR DEL PROCESO Y LO ASIGNAMOS A CADENA
+            Cadena = "Error al buscar cliente en la COLA: " + e.getMessage();
+            // RETORNAMOS EL ERROR
+            return Cadena;
+        }
     }
 
     // METODO QUE RETORNA LA COLA AUXILIAR A LA PRINCIPAL

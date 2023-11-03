@@ -9,14 +9,13 @@ public class COLAS_Base_251023 {
         clsControladores met = new clsControladores();
         int opcion = 0;
         while (opcion != 7) {
-
             opcion = Integer.parseInt(JOptionPane.showInputDialog("PROCESAMIENTO DE LIBROS\n"
                     + "1. Agregar cliente\n"
                     + "2. Modificar cliente\n"
                     + "3. Mostrar cliente\n"
                     + "4. Eliminar cliente\n"
                     + "5. Buscar cliente\n"
-                    + "6. Cantidad de libros\n"
+                    + "6. Buscar cliente por nombre\n"
                     + "7. Salir del sistema\n"));
 
             switch (opcion) {
@@ -35,10 +34,17 @@ public class COLAS_Base_251023 {
                     JOptionPane.showMessageDialog(null, met.EliminarCliente(
                             JOptionPane.showInputDialog("¿DN1?")));
                     break;
-                case 5:                    
-                    JOptionPane.showMessageDialog(null, met.BuscarCliente());
+                case 5:
+                    JOptionPane.showMessageDialog(null, met.BuscarCliente(
+                            JOptionPane.showInputDialog("¿DN1?")));
                     break;
-
+                case 6:
+                    JOptionPane.showMessageDialog(null, met.BuscarClienteNombre(
+                            JOptionPane.showInputDialog("¿Nombre?")));
+                    break;
+                case 7:
+                    JOptionPane.showMessageDialog(null, "Saliendo");
+                    break;
                 default:
                     JOptionPane.showMessageDialog(null, "¡Opción incorrecta!\n\n"
                             + "Intentalo de nuevo");
